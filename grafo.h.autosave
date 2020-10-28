@@ -1,0 +1,25 @@
+#ifndef GRAFO_H
+#define GRAFO_H
+#include <list>
+#include <string>
+#include <vector>   
+
+using namespace std;
+
+class grafo
+{
+private:
+    int V;
+    list<int> * adj;
+
+public:
+    grafo(int V); //construtor
+    void adicionarAresta(int v1, int v2); //adiciona uma aresta no grafo
+    int obterGrau(int v);
+    
+    bool existeVizinho(int v1, int v2);
+    vector<int>listarVizinhos(int v);
+    
+};
+
+#endif // GRAFO_H

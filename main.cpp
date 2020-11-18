@@ -4,24 +4,23 @@
 
 int main()
 {
-    Grafo grafo(5);
+    Grafo grafo(8);
 
     grafo.adicionarAresta(0, 1);
-    grafo.adicionarAresta(0, 3);
-    grafo.adicionarAresta(1, 2);
+    grafo.adicionarAresta(0, 2);
+    grafo.adicionarAresta(1, 3);
     grafo.adicionarAresta(1, 4);
-    grafo.adicionarAresta(3, 1);
-    grafo.adicionarAresta(3, 2);
-    grafo.adicionarAresta(4, 1);
+    grafo.adicionarAresta(2, 5);
+    grafo.adicionarAresta(2, 6);
+    grafo.adicionarAresta(6, 7);
 
-    std::cout<<"Grau de saida de vertice 1: "<<grafo.obterGrau(1)<<std::endl;
+    grafo.dfs(0);
 
-    if(grafo.existeVizinho(0, 1))
-    {
-        std::cout<<"E vizinho"<<std::endl;
-    }else{
-        std::cout<<"Nao e vizinho"<<std::endl;
-    }
+    cout<<"\n---------------"<<endl;
+
+    grafo.bfs(0);
+
+    cout<<"\n---------------"<<endl;
 
     return 0;
 

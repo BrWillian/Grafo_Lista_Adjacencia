@@ -71,12 +71,7 @@ void Grafo::dfs(int v)
 void Grafo::bfs(int v)
 {
     list<int> fila;
-    bool visitados[V];
-
-    for(int i=0; i<V; i++)
-    {
-        visitados[i] = false;
-    }
+    vector<bool>visitados(V, false);
 
     visitados[v] = true;
     fila.push_back(v);
@@ -96,6 +91,44 @@ void Grafo::bfs(int v)
             {
                 visitados[*it] = true;
                 fila.push_back(*it);
+            }
+        }
+    }
+}
+bool Grafo::temCiclo()
+{
+    vector<bool>visitados(V, false);
+    vector<bool>pilha_recursao(V, false);
+
+    for(int i=0; i<V; i++)
+    {
+        if(temCicloUtils(i, visitados, pilha_recursao))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Grafo::temCicloUtils(int v, vector<bool>visitados, vector<bool>pilha_recursao)
+{
+    if(!visitados[v])
+    {
+        visitados[v] = true;
+        pilha_recursao[v] = true;
+
+        list<int>::iterator it;
+
+        for(it=adj[v].begin(); it!=adj[v].end(); it++)
+        {
+            if(!visitados[*it] && temCicloUtils(*it, visitados, pilha_recursao))
+            {
+                return true;
+            }else{
+                if(pilha_recursao[*it])
+                {
+                    return true;
+                }
             }
         }
     }

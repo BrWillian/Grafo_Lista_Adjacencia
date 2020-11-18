@@ -24,6 +24,8 @@ public:
     vector<int>listarVizinhos(int v);
     void dfs(int v);
     void bfs(int v);
+    bool temCiclo();
+    bool temCicloUtils(int v, vector<bool>visitados, vector<bool>pilha_recursao);
 
 };
 
